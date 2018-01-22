@@ -1,0 +1,38 @@
+buildscript {
+    // Dependencies
+    ext.kotlin = "1.2.20"
+    ext.springBoot = "1.5.9.RELEASE"
+
+    repositories {
+        jcenter()
+    }
+    
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
+        // See https://kotlinlang.org/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugin
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBoot"
+    }
+}
+
+apply plugin: "kotlin"
+// See https://kotlinlang.org/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugin
+apply plugin: "kotlin-spring"
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = "kotlin-rest-service"
+    version = "1.0.0"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin"
+    compile "org.springframework.boot:spring-boot-starter-web"
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
