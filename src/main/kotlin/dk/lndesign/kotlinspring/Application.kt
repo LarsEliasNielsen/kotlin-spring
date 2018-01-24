@@ -1,10 +1,34 @@
 package dk.lndesign.kotlinspring
 
+import dk.lndesign.kotlinspring.model.repository.LocalSectionRepository
+import dk.lndesign.kotlinspring.model.repository.RemoteSectionRepository
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
+import org.springframework.web.client.RestTemplate
 
+/**
+ * Sprint Boot application configuration.
+ */
 @SpringBootApplication
-class Application
+class Application {
+
+    // Default bean scope is singleton scope, only one instance per application.
+    @Bean
+    fun providesRestTemplate(): RestTemplate {
+        return RestTemplate()
+    }
+
+    @Bean
+    fun providesRemoteSectionRepository(): RemoteSectionRepository {
+        return RemoteSectionRepository()
+    }
+
+    @Bean
+    fun providesLocalSectionRepository(): LocalSectionRepository {
+        return LocalSectionRepository()
+    }
+}
 
 fun main(args: Array<String>) {
     SpringApplication.run(Application::class.java, *args)
