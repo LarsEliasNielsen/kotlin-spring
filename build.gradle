@@ -1,6 +1,6 @@
 buildscript {
     // Dependencies
-    ext.kotlin = "1.2.20"
+    ext.kotlin = "1.2.21"
     ext.springBoot = "1.5.9.RELEASE"
 
     repositories {
