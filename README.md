@@ -8,10 +8,10 @@ $ ./gradlew bootRun
 
 Or download the JAR and run:
 ```bash
-$ java -jar kotlin-spring-1.0.0.jar
+$ java -jar kotlin-rest-service-1.0.0.jar
 ```
 
-The application run on `localhost:8080/`.
+The application run on `localhost:8080/`
 
 
 ## Resources
