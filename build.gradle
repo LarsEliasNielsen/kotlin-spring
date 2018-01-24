@@ -2,6 +2,7 @@ buildscript {
     // Dependencies
     ext.kotlin = "1.2.21"
     ext.springBoot = "1.5.9.RELEASE"
+    ext.swagger = "2.8.0"
 
     repositories {
         jcenter()
@@ -31,8 +32,13 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin"
+
     compile "org.springframework.boot:spring-boot-starter-web"
+
     compile "com.fasterxml.jackson.core:jackson-databind"
+
+    compile "io.springfox:springfox-swagger2:$swagger"
+    compile "io.springfox:springfox-swagger-ui:$swagger"
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
 }
