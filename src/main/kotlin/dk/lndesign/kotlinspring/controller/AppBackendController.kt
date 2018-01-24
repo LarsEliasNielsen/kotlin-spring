@@ -1,4 +1,4 @@
-package dk.lndesign.kotlinspring
+package dk.lndesign.kotlinspring.controller
 
 import dk.lndesign.kotlinspring.model.repository.LocalSectionRepository
 import dk.lndesign.kotlinspring.model.repository.RemoteSectionRepository
