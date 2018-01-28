@@ -2,6 +2,7 @@ package dk.lndesign.kotlinspring.model.repository
 
 import dk.lndesign.kotlinspring.model.response.Section
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.web.client.RestTemplate
 import java.util.logging.Logger
 
@@ -9,6 +10,10 @@ import java.util.logging.Logger
  * Providing copies of remotely stored sections.
  */
 class RemoteSectionRepository: SectionRepository {
+
+    companion object {
+        const val REMOTE_SECTION_REPOSITORY = "remoteSectionRepository"
+    }
 
     val LOG = Logger.getLogger(this.javaClass.name)
 
@@ -18,6 +23,7 @@ class RemoteSectionRepository: SectionRepository {
     @Autowired
     lateinit var restTemplate: RestTemplate
 
+    @Cacheable("remoteSections")
     override fun getAll(appId: String): List<Section> {
         return when (appId) {
             NEWS_APP_ID -> getSections(appId, NEWS_SECTIONS_VERSION)
