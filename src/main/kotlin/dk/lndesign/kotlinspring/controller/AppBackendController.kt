@@ -2,10 +2,12 @@ package dk.lndesign.kotlinspring.controller
 
 import dk.lndesign.kotlinspring.model.repository.LocalSectionRepository
 import dk.lndesign.kotlinspring.model.repository.RemoteSectionRepository
+import dk.lndesign.kotlinspring.model.repository.SectionRepository
 import dk.lndesign.kotlinspring.model.response.Section
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
@@ -21,10 +23,12 @@ class AppBackendController {
 
     // Auto inject singleton instance of repository.
     @Autowired
-    lateinit var localSectionRepository: LocalSectionRepository
+    @Qualifier(LocalSectionRepository.LOCAL_SECTION_REPOSITORY)
+    lateinit var localSectionRepository: SectionRepository
 
     @Autowired
-    lateinit var remoteSectionRepository: RemoteSectionRepository
+    @Qualifier(RemoteSectionRepository.REMOTE_SECTION_REPOSITORY)
+    lateinit var remoteSectionRepository: SectionRepository
 
     // Mapping GET request to path.
     @ApiOperation(value = "Fetch remotely stored sections")
@@ -40,9 +44,6 @@ class AppBackendController {
     @RequestMapping(value = ["/{appId}/sections"], method = [RequestMethod.GET], produces = ["application/json"])
     fun getSections(@PathVariable("appId") appId: String): List<Section> {
         LOG.info("Fetching sections from local")
-
-        // Emulate long operation as part of request.
-        Thread.sleep(3000L)
 
         // TODO: Handle errors and exceptions in response.
         return localSectionRepository.getAll(appId)

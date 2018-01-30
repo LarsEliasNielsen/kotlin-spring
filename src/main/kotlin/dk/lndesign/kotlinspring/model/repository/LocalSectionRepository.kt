@@ -2,17 +2,26 @@ package dk.lndesign.kotlinspring.model.repository
 
 import dk.lndesign.kotlinspring.model.response.Section
 import dk.lndesign.kotlinspring.model.response.Statistics
+import org.springframework.cache.annotation.Cacheable
 
 /**
  * Providing copies of locally stored sections.
  */
 class LocalSectionRepository: SectionRepository {
 
+    companion object {
+        const val LOCAL_SECTION_REPOSITORY = "localSectionRepository"
+    }
+
+    @Cacheable("localSections")
     override fun getAll(appId: String): List<Section> {
         return getSections(appId)
     }
 
     private fun getSections(appId: String): List<Section> {
+        // Emulate long operation as part of request.
+        Thread.sleep(3000L)
+
         return when (appId) {
             NEWS_APP_ID -> {
                 listOf(Section(
