@@ -1,14 +1,17 @@
 # kotlin-spring
 
+This project is a prototype of a RESTful API written in Kotlin. The application is build on Spring Boot with Redis caching.
+
+
 ## Setup
 Copy the repository and run:
 ```bash
-$ ./gradlew bootRun
+$ gradlew bootRun
 ```
 
 Or download the JAR and run:
 ```bash
-$ java -jar kotlin-rest-service-1.0.1.jar
+$ java -jar kotlin-rest-service-1.0.2.jar
 ```
 
 The application run on `localhost:8080/`
